@@ -8,17 +8,38 @@ Army manager
 Common web client will be used across the various versions.
 Common database will be provided via sqlite, which will be created externaly.
 
+# Database
+2 tables 
+First table will host unit type information and will be strictly read-only
+
+| UnitId | UnitName | UnitAttackType | UnitDamage | UnitHealth | UnitCost |
+| ------ | -------- | -------------- | ---------- | ---------- | -------- |
+
+Second will host your army roster
+| id | UnitId(reference to table 1) | amount |
+| -- | ---------------------------- | ------ |
+
+
 # API Specification:
-Route: api/v1/units
+## Route: api/v1/units
 
 - GET  
   - Will return all units in your army
 - POST
-  - Add unit type to your army
+  - Add unit type to your army  
+  Parameters:
+  - Type of the unit to add
 - UPDATE
-  - Increase or decrease the number of units
+  - Increase or decrease the number of units  
+  Parameters:
+  - Types of the units to modify
+  - Amount of units to change
 - DELETE
   - Remove unit type from your army
+ 
+ ## Route api/v1/units/types
+ - GET
+   - Will return all unit types info
  
 ------
 ## Currently implemented:
