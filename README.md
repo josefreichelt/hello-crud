@@ -11,10 +11,10 @@ Common database will be provided via sqlite, which will be created externaly.
 # API Specification:
 Route: api/v1/units
 
-- GET
-  Will return all units in your army
+- GET  
+  - Will return all units in your army
 - POST
-  Add unit type to your army
+  - Add unit type to your army
 - UPDATE
   - Increase or decrease the number of units
 - DELETE
