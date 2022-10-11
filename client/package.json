@@ -1,0 +1,11 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -p 1337 -o"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
