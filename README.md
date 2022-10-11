@@ -41,6 +41,10 @@ Second will host your army roster
  - GET
    - Will return all unit types info
  
+
+Port frontend is listening on: 1337
+Port backend is listening on: 1338
+
 ------
 ## Currently implemented:
 
@@ -59,3 +63,12 @@ Other potential variants
 - [ ] Kotlin
 - [ ] Perl
 - [ ] C++
+
+------
+
+# Requirements
+Minimum requirements for running the clients are **Node 16**
+
+Inside the client folder, all you need to do is:
+- **npm i** which install the required dependency to start a web server
+- **npm start** which starts the webserver which serves the client
