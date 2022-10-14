@@ -69,7 +69,9 @@ export class UnitCard extends HTMLLIElement {
                 });;
             });
             this.appendChild(unitAmountContainerSpacer);
-            unitAmountContainer.appendChild(unitAmountDecrease);
+            if(amount > 1){
+                unitAmountContainer.appendChild(unitAmountDecrease);
+            }
             unitAmountContainer.appendChild(unitAmountDisplay);
             unitAmountContainer.appendChild(unitAmountIncrease);
             this.appendChild(unitAmountContainer);

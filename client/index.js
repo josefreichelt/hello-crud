@@ -39,13 +39,42 @@ function renderUnits(data, isRoster = false) {
 
 function recalculateArmyInfo(data) {
     const infoListEl = document.getElementById("army-info-list");
+    let totalUnits = 0;
+    let totalDamage = 0;
+    let totalMelee = 0;
+    let totalRanged = 0;
+    let totalMeleeDamage = 0;
+    let totalRangedDamage = 0;
+    let totalCost = 0;
+    let totalHealth = 0;
+    let totalUnitTypes = new Set();
 
-
-
+    data.map(unit => {
+        totalUnitTypes.add(unit.unit_id);
+        totalUnits += unit.amount;
+        totalDamage += unit.unit_damage * unit.amount;
+        if (unit.unit_attack_type === "MELEE") {
+            totalMelee += unit.amount;
+            totalMeleeDamage += unit.unit_damage * unit.amount;
+        } else if (unit.unit_attack_type === "RANGED") {
+            totalRanged += unit.amount;
+            totalRangedDamage += unit.unit_damage * unit.amount;
+        }
+        totalCost += unit.unit_cost * unit.amount;
+        totalHealth += unit.unit_health * unit.amount;
+    });
 
 
     infoListEl.replaceChildren();
-    infoListEl.appendChild(renderArmyInfoItem("test", "cont"));
+    infoListEl.appendChild(renderArmyInfoItem("Units", totalUnits));
+    infoListEl.appendChild(renderArmyInfoItem("Unit Types", totalUnitTypes.size));
+    infoListEl.appendChild(renderArmyInfoItem("Melee Units", totalMelee));
+    infoListEl.appendChild(renderArmyInfoItem("Ranged Units", totalRanged));
+    infoListEl.appendChild(renderArmyInfoItem("Melee Damage", totalMeleeDamage));
+    infoListEl.appendChild(renderArmyInfoItem("Ranged Damage", totalRangedDamage));
+    infoListEl.appendChild(renderArmyInfoItem("Damage", totalDamage));
+    infoListEl.appendChild(renderArmyInfoItem("Cost", totalCost));
+    infoListEl.appendChild(renderArmyInfoItem("Health", totalHealth));
 }
 
 function renderArmyInfoItem(title, content) {
