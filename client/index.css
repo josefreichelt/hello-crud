@@ -111,6 +111,8 @@ button:hover {
 
 #army-info-list {
     list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .army-info-item-title {
