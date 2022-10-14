@@ -52,17 +52,20 @@ export class UnitCard extends HTMLLIElement {
     `;
             unitAmountIncrease.addEventListener("click", () => {
                 ApiHandler.updateRosterUnitAmount(unit_id, true).then(data => {
-                    fireOnRosterUpdateEvent(data);
+                    fireOnRosterUpdateEvent(data, true);
+
                 });
             });
             unitAmountDecrease.addEventListener("click", () => {
                 ApiHandler.updateRosterUnitAmount(unit_id, false).then(data => {
-                    fireOnRosterUpdateEvent(data);
+                    fireOnRosterUpdateEvent(data, true);
+
                 });;
             });
             unitDelete.addEventListener("click", () => {
                 ApiHandler.deleteUnitFromRoster(unit_id).then(data => {
-                    fireOnRosterUpdateEvent(data);
+                    fireOnRosterUpdateEvent(data, true);
+
                 });;
             });
             this.appendChild(unitAmountContainerSpacer);
@@ -82,7 +85,7 @@ export class UnitCard extends HTMLLIElement {
             addToRosterButton.textContent = "Add to Roster";
             addToRosterButton.addEventListener("click", () => {
                 ApiHandler.addUnitTypeToRoster(unit_id).then(data => {
-                    fireOnRosterUpdateEvent(data);
+                    fireOnRosterUpdateEvent(data, true);
                 });;
             });
 
@@ -94,7 +97,7 @@ export class UnitCard extends HTMLLIElement {
 
     }
 }
-function fireOnRosterUpdateEvent(data) {
-    document.dispatchEvent(new CustomEvent("onRosterUpdate", { detail: data }));
+function fireOnRosterUpdateEvent(data, isRoster) {
+    document.dispatchEvent(new CustomEvent("onRosterUpdate", { detail: { data, isRoster } }));
 }
 window.customElements.define("unit-card", UnitCard, { extends: 'li' });;

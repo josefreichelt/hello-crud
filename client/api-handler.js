@@ -1,7 +1,12 @@
 class ApiHandlerV1 {
     #apiPort = 1338;
     #apiUrl = `http://localhost:${this.#apiPort}/api/v1`;
-
+    #commonHeader = {
+        mode: "cors",
+        headers: {
+            "content-type": "application/json",
+        },
+    }
     async getUnitInfo() {
         const res = await fetch(`${this.#apiUrl}/units/types`);
         if (res.ok) {
@@ -25,10 +30,11 @@ class ApiHandlerV1 {
 
     async addUnitTypeToRoster(unitId) {
         const res = await fetch(`${this.#apiUrl}/units`, {
+            ...this.#commonHeader,
             method: "POST",
-            body: {
+            body: JSON.stringify({
                 unit_id: unitId
-            }
+            })
         });
         if (res.ok) {
             const data = await res.json();
@@ -40,11 +46,12 @@ class ApiHandlerV1 {
 
     async updateRosterUnitAmount(unitId, isAdding) {
         const res = await fetch(`${this.#apiUrl}/units`, {
+            ...this.#commonHeader,
             method: "PUT",
-            body: {
+            body: JSON.stringify({
                 unit_id: unitId,
                 is_adding: isAdding
-            }
+            })
         });
         if (res.ok) {
             const data = await res.json();
@@ -56,10 +63,11 @@ class ApiHandlerV1 {
 
     async deleteUnitFromRoster(unitId) {
         const res = await fetch(`${this.#apiUrl}/units`, {
+            ...this.#commonHeader,
             method: "DELETE",
-            body: {
+            body: JSON.stringify({
                 unit_id: unitId
-            }
+            })
         });
         if (res.ok) {
             const data = await res.json();
