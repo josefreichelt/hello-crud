@@ -44,12 +44,12 @@ class ApiHandlerV1 {
         }
     }
 
-    async updateRosterUnitAmount(unitId, isAdding) {
+    async updateRosterUnitAmount(rosterId, isAdding) {
         const res = await fetch(`${this.#apiUrl}/units`, {
             ...this.#commonHeader,
             method: "PUT",
             body: JSON.stringify({
-                unit_id: unitId,
+                roster_id: rosterId,
                 is_adding: isAdding
             })
         });

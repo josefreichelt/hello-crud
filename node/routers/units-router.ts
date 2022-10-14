@@ -3,6 +3,7 @@ import { deleteUnitFromArmyRosterController } from '../controllers/delete-unit-f
 import { getArmyRosterController } from '../controllers/get-army-roster-controller';
 import { getUnitTypesController } from '../controllers/get-unit-types-controller';
 import { postUnitToArmyRosterController } from '../controllers/post-unit-to-army-roster-controller';
+import { updateUnitInArmyRosterController } from '../controllers/update-unit-in-army-roster-controller';
 
 /**
  * Router that lives on /units
@@ -13,3 +14,4 @@ unitsRouter.get('/types', getUnitTypesController);
 unitsRouter.get('', getArmyRosterController);
 unitsRouter.post('', postUnitToArmyRosterController);
 unitsRouter.delete('', deleteUnitFromArmyRosterController);
+unitsRouter.put('', updateUnitInArmyRosterController);

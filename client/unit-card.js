@@ -51,13 +51,13 @@ export class UnitCard extends HTMLLIElement {
             <span><b>Amount: </b><span>${amount}</span></span>
     `;
             unitAmountIncrease.addEventListener("click", () => {
-                ApiHandler.updateRosterUnitAmount(unit_id, true).then(data => {
+                ApiHandler.updateRosterUnitAmount(id, true).then(data => {
                     fireOnRosterUpdateEvent(data, true);
 
                 });
             });
             unitAmountDecrease.addEventListener("click", () => {
-                ApiHandler.updateRosterUnitAmount(unit_id, false).then(data => {
+                ApiHandler.updateRosterUnitAmount(id, false).then(data => {
                     fireOnRosterUpdateEvent(data, true);
 
                 });;
