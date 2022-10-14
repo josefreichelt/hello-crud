@@ -1,7 +1,5 @@
-import { Database, OPEN_READWRITE, verbose } from 'sqlite3';
+import { Database, OPEN_READWRITE } from 'sqlite3';
 import { resolve } from 'path';
-
-verbose();
 
 export const db = new Database(
     resolve(__dirname, '../database.sqlite'),

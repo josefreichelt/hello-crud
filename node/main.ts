@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { unitsRouter } from './routers/units-router';
 
-const port = 1338;
+const PORT = 1338;
 const App = express();
 const API_URL = '/api/v1';
 
@@ -11,8 +11,6 @@ App.use(cors());
 
 App.use(`${API_URL}/units`,unitsRouter)
 
-
-
-App.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+App.listen(PORT, () => {
+    console.log(`Example app listening at http://localhost:${PORT}`);
 });

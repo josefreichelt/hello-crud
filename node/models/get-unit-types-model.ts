@@ -14,7 +14,7 @@ export async function getUnitTypesFromDb() {
     try {
         return await request;
     } catch (err) {
-        console.error('Error getting Unit Types from DB', err);
+        console.error('Error getting Unit types from DB', err);
         return [];
     }
 }

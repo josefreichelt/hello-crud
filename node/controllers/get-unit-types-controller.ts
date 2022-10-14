@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getUnitTypesFromDb } from '../models/unit-types-model';
+import { getUnitTypesFromDb } from '../models/get-unit-types-model';
 
 export async function getUnitTypesController(_req: Request, res: Response) {
     try {
