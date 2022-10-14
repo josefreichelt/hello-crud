@@ -61,12 +61,12 @@ class ApiHandlerV1 {
         }
     }
 
-    async deleteUnitFromRoster(unitId) {
+    async deleteUnitFromRoster(rosterId) {
         const res = await fetch(`${this.#apiUrl}/units`, {
             ...this.#commonHeader,
             method: "DELETE",
             body: JSON.stringify({
-                unit_id: unitId
+                roster_id: rosterId
             })
         });
         if (res.ok) {

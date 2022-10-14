@@ -1,7 +1,7 @@
 import { ApiHandler } from './api-handler.js';
 
 export class UnitCard extends HTMLLIElement {
-    constructor({ unit_name, unit_attack_type, unit_cost, unit_damage, unit_health, amount, unit_id }, isRoster = false) {
+    constructor({ unit_name, unit_attack_type, unit_cost, unit_damage, unit_health, amount, unit_id, id }, isRoster = false) {
         super();
         this.classList.add('unit-card');
 
@@ -63,7 +63,7 @@ export class UnitCard extends HTMLLIElement {
                 });;
             });
             unitDelete.addEventListener("click", () => {
-                ApiHandler.deleteUnitFromRoster(unit_id).then(data => {
+                ApiHandler.deleteUnitFromRoster(id).then(data => {
                     fireOnRosterUpdateEvent(data, true);
 
                 });;
