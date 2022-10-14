@@ -50,8 +50,8 @@ Port backend is listening on: 1338
 ------
 ## Currently implemented:
 
-- [ ] Common web client
-- [ ] Node
+- [x] Common web client
+- [x] Node
 - [ ] Python
 - [ ] PHP
 - [ ] Go
