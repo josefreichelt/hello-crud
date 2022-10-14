@@ -1,5 +1,7 @@
+import { ApiHandler } from './api-handler.js';
+
 export class UnitCard extends HTMLLIElement {
-    constructor({ unit_name, unit_attack_type, unit_cost, unit_damage, unit_health }, isRoster = false) {
+    constructor({ unit_name, unit_attack_type, unit_cost, unit_damage, unit_health, amount, unit_id }, isRoster = false) {
         super();
         this.classList.add('unit-card');
 
@@ -12,15 +14,15 @@ export class UnitCard extends HTMLLIElement {
         `;
         const damageEl = document.createElement('div');
         damageEl.innerHTML = `
-            <span><b>Damage: </b><span class="attack-type">${unit_damage}</span></span>
+            <span><b>Damage: </b><span>${unit_damage}</span></span>
         `;
         const healthEl = document.createElement('div');
         healthEl.innerHTML = `
-            <span><b>Health: </b><span class="attack-type">${unit_health}</span></span>
+            <span><b>Health: </b><span>${unit_health}</span></span>
         `;
         const unitCostEl = document.createElement('div');
         unitCostEl.innerHTML = `
-        <span><b>Cost: </b><span class="attack-type">${unit_cost}</span></span>
+        <span><b>Cost: </b><span>${unit_cost}</span></span>
 `;
 
         this.appendChild(unitNameEl);
@@ -30,6 +32,46 @@ export class UnitCard extends HTMLLIElement {
         this.appendChild(unitCostEl);
 
         if (isRoster) {
+            const unitAmountContainerSpacer = document.createElement("div");
+            unitAmountContainerSpacer.style.display = "flex";
+            unitAmountContainerSpacer.style.flexGrow = 1;
+            const unitAmountContainer = document.createElement("div");
+            const unitAmountDisplay = document.createElement("span");
+            const unitAmountIncrease = document.createElement("button");
+            unitAmountIncrease.innerText = "+";
+            const unitAmountDecrease = document.createElement("button");
+            unitAmountDecrease.innerText = "-";
+            const unitDelete = document.createElement("button");
+            unitDelete.classList.add("unit-delete");
+            unitDelete.innerText = "❌";
+
+            unitAmountContainer.classList.add("unit-amount-container");
+
+            unitAmountDisplay.innerHTML = `
+            <span><b>Amount: </b><span>${amount}</span></span>
+    `;
+            unitAmountIncrease.addEventListener("click", () => {
+                ApiHandler.updateRosterUnitAmount(unit_id, true).then(data => {
+                    fireOnRosterUpdateEvent(data);
+                });
+            });
+            unitAmountDecrease.addEventListener("click", () => {
+                ApiHandler.updateRosterUnitAmount(unit_id, false).then(data => {
+                    fireOnRosterUpdateEvent(data);
+                });;
+            });
+            unitDelete.addEventListener("click", () => {
+                ApiHandler.deleteUnitFromRoster(unit_id).then(data => {
+                    fireOnRosterUpdateEvent(data);
+                });;
+            });
+            this.appendChild(unitAmountContainerSpacer);
+            unitAmountContainer.appendChild(unitAmountDecrease);
+            unitAmountContainer.appendChild(unitAmountDisplay);
+            unitAmountContainer.appendChild(unitAmountIncrease);
+            this.appendChild(unitAmountContainer);
+            this.appendChild(unitDelete);
+
 
         } else {
             const buttonContainer = document.createElement("div");
@@ -39,8 +81,11 @@ export class UnitCard extends HTMLLIElement {
 
             addToRosterButton.textContent = "Add to Roster";
             addToRosterButton.addEventListener("click", () => {
-                console.log(`Adding to roster ${unit_name}`);
+                ApiHandler.addUnitTypeToRoster(unit_id).then(data => {
+                    fireOnRosterUpdateEvent(data);
+                });;
             });
+
 
             buttonContainer.appendChild(addToRosterButton);
             this.appendChild(buttonContainer);
@@ -49,5 +94,7 @@ export class UnitCard extends HTMLLIElement {
 
     }
 }
-
+function fireOnRosterUpdateEvent(data) {
+    document.dispatchEvent(new CustomEvent("onRosterUpdate", { detail: data }));
+}
 window.customElements.define("unit-card", UnitCard, { extends: 'li' });;
