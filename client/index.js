@@ -17,6 +17,9 @@ document.addEventListener("onRosterUpdate", (e) => {
     };
     console.log(e.detail);
     renderUnits(e.detail.data, e.detail.isRoster);
+    if (e.detail.isRoster) {
+        recalculateArmyInfo(e.detail.data);
+    }
 });
 
 function renderUnits(data, isRoster = false) {
@@ -33,3 +36,32 @@ function renderUnits(data, isRoster = false) {
     });
 
 }
+
+function recalculateArmyInfo(data) {
+    const infoListEl = document.getElementById("army-info-list");
+
+
+
+
+
+    infoListEl.replaceChildren();
+    infoListEl.appendChild(renderArmyInfoItem("test", "cont"));
+}
+
+function renderArmyInfoItem(title, content) {
+    const itemEl = document.createElement("li");
+    const itemTitle = document.createElement("span");
+    const itemContent = document.createElement("span");
+
+
+    itemEl.classList.add("army-info-item");
+    itemTitle.classList.add("army-info-item-title");
+    itemTitle.textContent = title;
+    itemContent.textContent = content;
+
+
+    itemEl.appendChild(itemTitle);
+    itemEl.appendChild(itemContent);
+    return itemEl;
+}
+
