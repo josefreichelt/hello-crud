@@ -12,11 +12,13 @@ Common database will be provided via sqlite, which will be created externaly.
 2 tables 
 First table will host unit type information and will be strictly read-only
 
+## Table: ``unit_types``
 | unit_id | unit_name | unit_attack_type | unit_damage | unit_health | unit_cost |
 | ------- | --------- | ---------------- | ----------- | ----------- | --------- |
 
 Second will host your army roster
-| id | unit_ud(reference to table 1) | amount |
+## Table: ``roster``
+| id | unit_id(reference to table 1) | amount |
 | -- | ----------------------------- | ------ |
 
 
