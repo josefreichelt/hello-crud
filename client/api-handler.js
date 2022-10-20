@@ -8,7 +8,7 @@ class ApiHandlerV1 {
         },
     }
     async getUnitInfo() {
-        const res = await fetch(`${this.#apiUrl}/units/types`);
+        const res = await fetch(`${this.#apiUrl}/units/types`,this.#commonHeader);
         if (res.ok) {
             const data = await res.json();
             return data;
@@ -19,7 +19,7 @@ class ApiHandlerV1 {
 
 
     async getArmyRoster() {
-        const res = await fetch(`${this.#apiUrl}/units`);
+        const res = await fetch(`${this.#apiUrl}/units`,this.#commonHeader);
         if (res.ok) {
             const data = await res.json();
             return data;
