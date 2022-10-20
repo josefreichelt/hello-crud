@@ -1,8 +1,4 @@
-print("Hello there")
-from flask import Flask
+from config import app, BASE_URL
+from database import *
+from router import *
 
-app = Flask(__name__)
-
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
