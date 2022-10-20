@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "140775df-4b08-4a94-b719-8a4990083759",
+    "colName": "Hello Crud",
+    "created": "2022-10-19T09:19:57.188Z",
+    "sortNum": 10000,
+    "folders": [],
+    "settings": {
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "tests": []
+    }
+  }
+]
