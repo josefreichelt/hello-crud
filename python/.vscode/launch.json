@@ -16,7 +16,7 @@
             "args": [
                 "run",
                 "--no-debugger",
-                "--no-reload"
+                "-p 1338"
             ],
             "jinja": true,
             "justMyCode": true
