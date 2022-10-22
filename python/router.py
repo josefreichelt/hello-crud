@@ -1,4 +1,5 @@
 from config import app, UNITS_URL
+from controllers.delete_unit_from_roster_controller import delete_unit_roster_controller
 from controllers.get_unit_roster_controller import get_unit_roster_controller
 from controllers.get_unit_types_controller import get_unit_types_controller
 from controllers.post_unit_to_army_roster_controller import post_unit_roster_controller
@@ -25,5 +26,14 @@ def post_unit_to_roster():
 
 @app.put(f"{UNITS_URL}")
 def update_unit_in_roster():
-    print("Posting units roster")
+    print("Updating units roster")
     return update_unit_roster_controller()
+
+
+
+@app.delete(f"{UNITS_URL}")
+def delete_unit_in_roster():
+    print("Deleting unit in roster")
+    return delete_unit_roster_controller()
+
+
