@@ -1,14 +1,15 @@
-from database import getDb, rowsToListOfDict
-from models.get_unit_roster_model import getUnitRosterModel
+from database import get_db
+from models.get_unit_roster_model import get_unit_roster_model
 
 
-def postUnitToRosterModel(unit_id: int):
+def post_unit_to_roster_model(unit_id: int):
     try:
-        db = getDb()
-        cursor = db.execute(f"""INSERT INTO roster(unit_id, amount) VALUES({unit_id}, 1);""")
+        db = get_db()
+        cursor = db.execute(
+            f"""INSERT INTO roster(unit_id, amount) VALUES({unit_id}, 1);""")
         print(f"Inserted {unit_id}, lastId is {cursor.lastrowid}")
         db.commit()
-        return getUnitRosterModel()
+        return get_unit_roster_model()
     except Exception as e:
         print("Error posting units to database")
         print(e)

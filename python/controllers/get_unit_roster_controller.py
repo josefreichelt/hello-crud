@@ -1,5 +1,5 @@
-from models.get_unit_roster_model import getUnitRosterModel
+from models.get_unit_roster_model import get_unit_roster_model
 
 
-def getUnitRosterController():
-    return getUnitRosterModel()
+def get_unit_roster_controller():
+    return get_unit_roster_model()

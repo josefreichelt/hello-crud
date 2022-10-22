@@ -6,7 +6,7 @@ from config import app
 DATABASE_FILE = path.realpath(path.join(getcwd(), "../database.sqlite"))
 
 
-def getDb():
+def get_db():
     db = getattr(g, '_database', None)
     if db is None:
         print("Openning connection to database")
@@ -14,23 +14,24 @@ def getDb():
         db.row_factory = sqlite3.Row
     return db
 
+
 @app.teardown_appcontext
-def closeDb(exception):
+def close_db(exception):
     db = getattr(g, '_database', None)
     if db is not None:
         db.close()
         print("Closing connection to database\n")
 
 
-def rowToDict(row: sqlite3.Row):
+def row_to_dict(row: sqlite3.Row):
     return dict(zip(row.keys(), row))
 
 
-def rowsToListOfDict(rows: list[sqlite3.Row]):
+def rows_to_list_of_dict(rows: list[sqlite3.Row]):
     newList = []
     for row in rows:
-        newList.append(rowToDict(row))
+        newList.append(row_to_dict(row))
     return newList
 
 
-atexit.register(closeDb)
+atexit.register(close_db)
