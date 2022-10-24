@@ -7,15 +7,15 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug executable 'rust'",
+            "name": "Debug executable 'hellocrud'",
             "cargo": {
                 "args": [
                     "build",
-                    "--bin=rust",
-                    "--package=rust"
+                    "--bin=hellocrud",
+                    "--package=hellocrud"
                 ],
                 "filter": {
-                    "name": "rust",
+                    "name": "hellocrud",
                     "kind": "bin"
                 }
             },
@@ -26,16 +26,16 @@
         {
             "type": "lldb",
             "request": "launch",
-            "name": "Debug unit tests in executable 'rust'",
+            "name": "Debug unit tests in executable 'hellocrud'",
             "cargo": {
                 "args": [
                     "test",
                     "--no-run",
-                    "--bin=rust",
-                    "--package=rust"
+                    "--bin=hellocrud",
+                    "--package=hellocrud"
                 ],
                 "filter": {
-                    "name": "rust",
+                    "name": "hellocrud",
                     "kind": "bin"
                 }
             },
