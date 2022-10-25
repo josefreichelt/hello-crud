@@ -10,4 +10,5 @@ const baseRoute = "/api/v1/"
 
 func SetupRouter(context *gin.Engine) {
 	context.GET(baseRoute+"units/types", controllers.GetUnitTypesController)
+	context.GET(baseRoute+"units",controllers.GetUnitRosterController)
 }
