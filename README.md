@@ -53,7 +53,7 @@ Port backend is listening on: 1338
 - [x] Common web client
 - [x] Node
 - [x] Python
-- [ ] Go
+- [x] Go
 - [ ] Rust
 - [ ] C#
 - [ ] Java
