@@ -12,5 +12,6 @@ func SetupRouter(context *gin.Engine) {
 	context.GET(baseRoute+"units/types", controllers.GetUnitTypesController)
 	context.GET(baseRoute+"units",controllers.GetUnitRosterController)
 	context.PUT(baseRoute+"units",controllers.UpdateUnitInRosterController)
+	context.POST(baseRoute+"units",controllers.PostUnitInRosterController)
 	context.DELETE(baseRoute+"units",controllers.DeleteUnitInRosterController)
 }
