@@ -50,21 +50,21 @@ Port backend is listening on: 1338
 ------
 ## Currently implemented:
 
-- [x] Common web client
+- [x] Common web client  
+- [ ] C#
+- [x] Go
 - [x] Node
 - [x] Python
-- [x] Go
-- [ ] Rust
-- [ ] C#
-- [ ] Java
-  
-Other potential variants
-- [ ] Nim
-- [ ] Ruby
-- [ ] Kotlin
-- [ ] Perl
+
+### Other potential variants
 - [ ] C++
+- [ ] Java
+- [ ] Kotlin
+- [ ] Nim
+- [ ] Perl
 - [ ] PHP
+- [ ] Ruby
+- [ ] Rust
 
 ------
 
