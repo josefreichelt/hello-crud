@@ -1,4 +1,4 @@
-namespace csharp;
+namespace hellocrud;
 
 public class WeatherForecast
 {

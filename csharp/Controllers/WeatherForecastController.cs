@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace csharp.Controllers;
+namespace hellocrud.Controllers;
 
 [ApiController]
 [Route("[controller]")]
