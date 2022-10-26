@@ -26,23 +26,30 @@ Second will host your army roster
 ## Route: api/v1/units
 
 - GET  
-  - Will return all units in your army
+  - Will return all units in your army  
+  - SQL: ```SELECT roster.id,roster.amount, unit_types.* FROM roster INNER JOIN unit_types ON roster.unit_id = unit_types.unit_id```
 - POST
   - Add unit type to your army  
   Parameters:
-  - Type of the unit to add
+    - Type of the unit to add
+  - SQL: ```INSERT INTO roster(unit_id, amount) VALUES([unit_id], 1);```
 - UPDATE
   - Increase or decrease the number of units  
   Parameters:
-  - Types of the units to modify
-  - Amount of units to change
+    - Id of the unit in roster to modify
+    - Amount of units to change
+  - SQL: ```UPDATE roster SET amount = amount + [isAdding ? 1 : -1] WHERE id=[id_in_roster];```
 - DELETE
   - Remove unit type from your army
- 
+  - Parameters:
+    - Id of the unit in roster to delete
+  - SQL: ```DELETE FROM roster WHERE id=[id_in_roster];```  
+
  ## Route api/v1/units/types
  - GET
    - Will return all unit types info
- 
+  - SQL: ```SELECT * FROM unit_types;```  
+
 
 Port frontend is listening on: 1337
 Port backend is listening on: 1338
