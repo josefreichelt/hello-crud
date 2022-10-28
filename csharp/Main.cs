@@ -18,7 +18,7 @@ namespace hellocrud
             {
                 options.AddPolicy(name: AllowedOrigins, policy =>
                 {
-                    policy.WithOrigins("http://127.0.0.1:1337", "*").SetIsOriginAllowedToAllowWildcardSubdomains().AllowAnyHeader();
+                    policy.WithOrigins("http://127.0.0.1:1337", "*").SetIsOriginAllowedToAllowWildcardSubdomains().AllowAnyHeader().AllowAnyMethod();
                 });
             });
             // Add services to the container.

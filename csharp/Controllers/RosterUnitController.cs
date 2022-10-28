@@ -21,17 +21,17 @@ public class RosterUnitController : ControllerBase
         return Ok(units);
     }
     [HttpPost(GLOBALS.UNITS_URL)]
-    public IActionResult Post()
+    public IActionResult Post(Models.RosterUnitPostBody body)
     {
-        Console.WriteLine("Getting Roster Units types");
-        var units = Models.RosterDatabase.GetRosterUnitsFromDatabase();
+        Console.WriteLine($"Posting Roster Unit {body.UnitId}");
+        var units = Models.RosterDatabase.PostRosterUnitToDatabase(body.UnitId);
         return Ok(units);
     }
     [HttpDelete(GLOBALS.UNITS_URL)]
-    public IActionResult Delete()
+    public IActionResult Delete(Models.RosterUnitDeleteBody body)
     {
-        Console.WriteLine("Getting Roster Units types");
-        var units = Models.RosterDatabase.GetRosterUnitsFromDatabase();
+        Console.WriteLine($"Deleting Roster unit {body.RosterId}");
+        var units = Models.RosterDatabase.DeleteRosterUnitsInDatabase(body.RosterId);
         return Ok(units);
     }
 

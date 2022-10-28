@@ -31,6 +31,17 @@ public class RosterUnitPutBody
     public bool isAdding { get; set; }
 }
 
+
+public class RosterUnitDeleteBody
+{
+    [JsonPropertyName("roster_id")]
+    public uint RosterId { get; set; }
+}
+public class RosterUnitPostBody
+{
+    [JsonPropertyName("unit_id")]
+    public uint UnitId { get; set; }
+}
 public static class RosterDatabase
 {
     public static List<RosterUnit> GetRosterUnitsFromDatabase()
@@ -49,8 +60,8 @@ public static class RosterDatabase
                 {
                     var newUnit = new RosterUnit();
                     newUnit.RosterId = uint.Parse(reader.GetString(0));
-                    newUnit.UnitID = uint.Parse(reader.GetString(1));
-                    newUnit.Amount = reader.GetInt32(2);
+                    newUnit.Amount = reader.GetInt32(1);
+                    newUnit.UnitID = uint.Parse(reader.GetString(2));
                     newUnit.UnitName = reader.GetString(3);
                     newUnit.UnitAttackType = reader.GetString(4);
                     newUnit.UnitDamage = reader.GetInt32(5);
@@ -72,6 +83,34 @@ public static class RosterDatabase
 
             var command = connection.CreateCommand();
             command.CommandText = @$"UPDATE roster SET amount = amount + {(isAdding ? 1 : -1)} WHERE id={rosterId};";
+            command.ExecuteNonQuery();
+        }
+
+        return GetRosterUnitsFromDatabase();
+    }
+
+    public static List<RosterUnit> DeleteRosterUnitsInDatabase(uint rosterId)
+    {
+        using (var connection = new SqliteConnection(GLOBALS.DB_URL))
+        {
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = @$"DELETE FROM roster WHERE id={rosterId};";
+            command.ExecuteNonQuery();
+        }
+
+        return GetRosterUnitsFromDatabase();
+    }
+
+    public static List<RosterUnit> PostRosterUnitToDatabase(uint unitId)
+    {
+        using (var connection = new SqliteConnection(GLOBALS.DB_URL))
+        {
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = @$"INSERT INTO roster(unit_id, amount) VALUES({unitId}, 1);";
             command.ExecuteNonQuery();
         }
 
