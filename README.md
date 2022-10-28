@@ -58,7 +58,7 @@ Port backend is listening on: 1338
 ## Currently implemented:
 
 - [x] Common web client  
-- [ ] C#
+- [x] C#
 - [x] Go
 - [x] Node
 - [x] Python
