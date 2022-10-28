@@ -10,7 +10,7 @@ public class UnitTypesController : ControllerBase
     public IActionResult Get()
     {
         Console.WriteLine("Getting unit types");
-        var units = Models.UnitTypesModel.GetUnitTypesFromDatabase();
+        var units = Models.UnitTypesDatabase.GetUnitTypesFromDatabase();
         return Ok(units);
     }
 }
