@@ -42,19 +42,11 @@ public static class UnitTypesDatabase
                     newUnit.UnitDamage = reader.GetInt32(3);
                     newUnit.UnitHealth = reader.GetInt32(4);
                     newUnit.UnitCost = reader.GetInt32(5);
-                    Console.WriteLine(
-                    "Got Unit\n" +
-                    $"ID: {newUnit.UnitID}\n" +
-                    $"Name: {newUnit.UnitName}\n" +
-                    $"AttackType: {newUnit.UnitAttackType}\n" +
-                    $"Damage: {newUnit.UnitDamage}\n" +
-                    $"Health: {newUnit.UnitHealth}\n" +
-                    $"Cost: {newUnit.UnitCost}\n\n"
-                    );
                     unitTypes.Add(newUnit);
                 }
             }
         }
+        Console.WriteLine($"Returnting {unitTypes.Count} units");
         return unitTypes;
     }
 }

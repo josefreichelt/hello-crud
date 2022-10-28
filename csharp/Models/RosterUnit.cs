@@ -23,6 +23,14 @@ public class RosterUnit
     public int UnitCost { get; set; }
 }
 
+public class RosterUnitPutBody
+{
+    [JsonPropertyName("roster_id")]
+    public uint RosterId { get; set; }
+    [JsonPropertyName("is_adding")]
+    public bool isAdding { get; set; }
+}
+
 public static class RosterDatabase
 {
     public static List<RosterUnit> GetRosterUnitsFromDatabase()
@@ -48,21 +56,25 @@ public static class RosterDatabase
                     newUnit.UnitDamage = reader.GetInt32(5);
                     newUnit.UnitHealth = reader.GetInt32(6);
                     newUnit.UnitCost = reader.GetInt32(7);
-                    Console.WriteLine(
-                    "Got Unit\n" +
-                    $"Roster ID: {newUnit.RosterId}\n" +
-                    $"Unit ID: {newUnit.UnitID}\n" +
-                    $"Amount: {newUnit.Amount}\n" +
-                    $"Name: {newUnit.UnitName}\n" +
-                    $"AttackType: {newUnit.UnitAttackType}\n" +
-                    $"Damage: {newUnit.UnitDamage}\n" +
-                    $"Health: {newUnit.UnitHealth}\n" +
-                    $"Cost: {newUnit.UnitCost}\n\n"
-                    );
                     rosterUnits.Add(newUnit);
                 }
             }
         }
+        Console.WriteLine($"Returnting {rosterUnits.Count} units");
         return rosterUnits;
+    }
+
+    public static List<RosterUnit> UpdateRosterUnitsInDatabase(uint rosterId, bool isAdding)
+    {
+        using (var connection = new SqliteConnection(GLOBALS.DB_URL))
+        {
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = @$"UPDATE roster SET amount = amount + {(isAdding ? 1 : -1)} WHERE id={rosterId};";
+            command.ExecuteNonQuery();
+        }
+
+        return GetRosterUnitsFromDatabase();
     }
 }
